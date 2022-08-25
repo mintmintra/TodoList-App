@@ -5,3 +5,14 @@
   box-sizing: border-box;
   font-family: 'Poppins', sans-serif;
 }
+
+body{
+  background: #3c87ff;
+}
+
+.wrapper{
+  max-width: 405px;
+  margin: 135px auto;
+  background: #fff;
+  border-radius: 7px;
+}
