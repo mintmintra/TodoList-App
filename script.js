@@ -11,7 +11,7 @@ function showTodo(filter) {
         todos.forEach((todo, id) => {
             li += `<li class="task">
             <label for="${id}">
-                <input type="checkbox" id="${id}">
+                <input onclick="updateStatus(this)" type="checkbox" id="${id}">
                 <p>${todo.name}</p>
             </label>
             <div class="settings">
@@ -29,6 +29,15 @@ function showTodo(filter) {
 
 
 showTodo();
+
+function updateStatus(selectedTask){
+    let taskName = selectedTask.parentElement.lastElementChild;
+    if(selectedTask.checked){
+        taskName.classList.add("checked")
+    }else{
+        taskName.classList.remove("checked")
+    }
+}
 
 taskInput.addEventListener("keyup", e => {
     let userTask = taskInput.value.trim();
