@@ -9,10 +9,11 @@ function showTodo(filter) {
     let li = "";
     if(todos) {
         todos.forEach((todo, id) => {
+            let isCompleted = todo.status == "completed" ? "checked" : "";
             li += `<li class="task">
             <label for="${id}">
-                <input onclick="updateStatus(this)" type="checkbox" id="${id}">
-                <p>${todo.name}</p>
+                <input onclick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
+                <p class="${isCompleted}">${todo.name}</p>
             </label>
             <div class="settings">
                 <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
@@ -25,6 +26,10 @@ function showTodo(filter) {
         });
     }
     taskBox.innerHTML = li;
+}
+
+function showMenu(selectedTask){
+    console.log(selectedTask)
 }
 
 
