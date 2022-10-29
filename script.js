@@ -29,7 +29,13 @@ function showTodo(filter) {
 }
 
 function showMenu(selectedTask){
-    console.log(selectedTask)
+    let taskMenu = selectedTask.parentElement.lastElementChild;
+    taskMenu.classList.add("show");
+    document.addEventListener("click", e => {
+        if(e.target.tagName != "I" || e.target != selectedTask){
+            taskMenu.classList.remove("show")
+        }
+    })
 }
 
 
