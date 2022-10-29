@@ -19,7 +19,7 @@ function showTodo(filter) {
                 <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                 <ul class="task-menu">
                     <li><i class="uil uil-pen"></i>Edit</li>
-                    <li><i class="uil uil-trash"></i>Delete</li>
+                    <li onclick="deleteTask(${id})"><i class="uil uil-trash"></i>Delete</li>
                 </ul>
             </div>
         </li>`;
@@ -27,6 +27,7 @@ function showTodo(filter) {
     }
     taskBox.innerHTML = li;
 }
+showTodo();
 
 function showMenu(selectedTask){
     let taskMenu = selectedTask.parentElement.lastElementChild;
@@ -38,8 +39,12 @@ function showMenu(selectedTask){
     })
 }
 
+function deleteTask(deleteId){
+    todos.splice(deleteId, 1);
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo();
+}
 
-showTodo();
 
 function updateStatus(selectedTask){
     let taskName = selectedTask.parentElement.lastElementChild;
