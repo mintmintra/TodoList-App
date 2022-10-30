@@ -18,7 +18,7 @@ function showTodo(filter) {
             <div class="settings">
                 <i onclick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                 <ul class="task-menu">
-                    <li><i class="uil uil-pen"></i>Edit</li>
+                    <li onclick="editTask(${id}, '${todo.name}')"><i class="uil uil-pen"></i>Edit</li>
                     <li onclick="deleteTask(${id})"><i class="uil uil-trash"></i>Delete</li>
                 </ul>
             </div>
@@ -37,6 +37,10 @@ function showMenu(selectedTask){
             taskMenu.classList.remove("show")
         }
     })
+}
+
+function editTask(taskId, taskName){
+    taskInput.value = taskName;
 }
 
 function deleteTask(deleteId){
