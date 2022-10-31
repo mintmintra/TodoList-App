@@ -3,6 +3,9 @@ filters = document.querySelectorAll(".filters span"),
 clearAll = document.querySelector(".clear-btn"),
 taskBox = document.querySelector(".task-box");
 
+let editId;
+let isEditedTask = false;
+
 let todos = JSON.parse(localStorage.getItem("todo-list"));
 
 function showTodo(filter) {
@@ -40,6 +43,8 @@ function showMenu(selectedTask){
 }
 
 function editTask(taskId, taskName){
+    editId = taskId;
+    isEditedTask = true;
     taskInput.value = taskName;
 }
 
@@ -65,12 +70,17 @@ function updateStatus(selectedTask){
 taskInput.addEventListener("keyup", e => {
     let userTask = taskInput.value.trim();
     if(e.key == "Enter" && userTask){
-       if(!todos){
-        todos = [];
+       if(!isEditedTask){
+        if(!todos){
+            todos = [];
+           }
+           let taskInfo = {name: userTask, status: "pending"}
+           todos.push(taskInfo)
+       } else {
+            isEditedTask = false;
+            todos[editId].name = userTask;
        }
        taskInput.value = ""
-       let taskInfo = {name: userTask, status: "pending"}
-       todos.push(taskInfo)
        localStorage.setItem("todo-list", JSON.stringify(todos));
        showTodo();
     }
